@@ -36,12 +36,13 @@ public class GameImpl implements Game {
     @PostConstruct
     @Override
     public void reset() {
-        guess = numberGenerator.getMinNumber();;
+        guess = numberGenerator.getMinNumber();
         remainingGuesses = guessCount;
         biggest = numberGenerator.getMaxNumber();
         smallest = numberGenerator.getMinNumber();
         number = numberGenerator.next();
-        //log.debug("the number is {}", number);
+        log.debug("the number is {}", number);
+        log.debug("the smallest is {}",smallest);
     }
 
     @PreDestroy
