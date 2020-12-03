@@ -5,7 +5,7 @@
 </head>
 <body>
     <div align="center">
-        <h1>Guess the number game</h1>
+        <h1 id="game-title">Guess the number game</h1>
         <h3 id="main-message">
             Main message content
         </h3>
@@ -16,9 +16,9 @@
         <form id="game-form"
               action="play"
               method="post">
-            <label for="guess">Enter number</label>
+            <label id="enter-guess" for="guess">Enter number</label>
             <input id="guess" name="guess" type="number" autofocus value="value text" onfocus="this.value = this.value;"/>
-            <input type="submit" title="Submit"/>
+            <input id="submit" type="submit" title="Submit"/>
         </form>
         <footer id="footerId">
             <p>Created by the LPA</p>

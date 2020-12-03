@@ -1,14 +1,17 @@
 package academy.learnprogramming.config;
 
+import academy.learnprogramming.interceptor.RequestInterceptor;
 import academy.learnprogramming.util.ViewNames;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.thymeleaf.spring5.view.ThymeleafView;
-import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+import java.util.Locale;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -19,5 +22,20 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("home").setViewName(ViewNames.HOME);
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new RequestInterceptor());
 
+//        LocaleChangeInterceptor localeChangeInterceptor=
+//                new LocaleChangeInterceptor();
+//        localeChangeInterceptor.setParamName("lang");
+        registry.addInterceptor(new LocaleChangeInterceptor());
+
+    }
+
+    // == bean methods ==
+    @Bean
+    public LocaleResolver localeResolver(){
+        return new SessionLocaleResolver();
+    }
 }
